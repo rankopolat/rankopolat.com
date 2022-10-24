@@ -1,16 +1,84 @@
+<!DOCTYPE html>
 <html>
-  
-  <head>
-    <h1> Project 1 </h1>
-  </head>
-  <body>
-    
-    YEWWW
-    
-    
-  </body>
-  
-  <script>
-  </script>
-  
+    <head>
+        <title>Task 1</title>
+    </head>
+
+<body>
+<center>
+<h3>Ranko Polat | 7259360 | Assignment 3</h3>
+<center>
+
+Multiplier: <input type="text" size="15" id="show1"  />
+</br>
+</br>
+<button onClick="Start()">Start</button>
+<button onClick= "Stop()">Stop</button >
+
+</br>
+</br>
+</br>
+
+<span id="displayNumber"></span>
+
+</center>
+</body>
+ <script>
+       
+	   //declaring global variables
+		var emojis = ['\u{1F600}', '\u{1F601}', '\u{1F602}', '\u{1F603}', '\u{1F604}', '\u{1F605}', '\u{1F606}', '\u{1F607}', '\u{1F608}', '\u{1F609}'];
+		var count = false;
+		var startCounter,random,input,result,string,savedText;
+	
+			//Random emoji picker
+			function randomEMO() { 
+			return emojis[Math.floor(Math.random() * emojis.length)];}
+		
+		function showsecondNum() {
+	
+	//intialising and updating vairables
+	result = random * input;
+	string = randomEMO() + random + " * "  + input + " = " + result + randomEMO();
+	random *= input;
+
+	//first interval through
+	if(count == false){
+	savedText = string;
+	document.getElementById("displayNumber").innerHTML = string;
+	count = true;;
+	}
+	
+	//following intervals
+	else {
+	savedText = savedText + "<br>" +  string ;
+	document.getElementById("displayNumber").innerHTML = savedText;	
+
+        }
+	}
+
+        function Start() {
+			
+			//resetting variables
+			clearInterval(startCounter);
+			savedText = "";
+			count = false;
+			document.getElementById("displayNumber").innerHTML = savedText;		
+			
+			//variables for animation start
+			random = Math.floor(Math.random() * 90 + 10);
+			input = Number(document.getElementById("show1").value);
+			
+			//beginning script
+		    startCounter = setInterval(showsecondNum, 1500);
+        }
+		
+		function Stop()	{
+	
+		//Clear textbox and stop counter
+		document.getElementById("show1").value = "";
+		clearInterval(startCounter);	
+		
+		}
+    </script>
+   
 </html>
